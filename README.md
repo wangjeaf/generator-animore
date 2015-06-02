@@ -1,4 +1,4 @@
-# generator-animore [![Build Status](https://secure.travis-ci.org/wangjeaf/generator-animore.png?branch=master)](https://travis-ci.org/wangjeaf/generator-animore)
+# generator-animore
 
 > [Yeoman](http://yeoman.io) generator
 
