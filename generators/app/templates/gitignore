@@ -1,0 +1,6 @@
+.DS_Store
+.svn
+node_modules
+.idea
+.jshintrc
+bower_components

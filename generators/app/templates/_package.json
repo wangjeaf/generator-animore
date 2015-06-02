@@ -1,0 +1,18 @@
+{
+  "name": "ID",
+  "description": "动效库开发，编号ID",
+  "repository": "请记得修改这个repository到正确地址",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-connect": "~0.6.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-watch": "*"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "start": "grunt dev"
+  }
+}
