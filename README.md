@@ -1,6 +1,6 @@
 # generator-animore
 
-> [Yeoman](http://yeoman.io) generator
+> [Yeoman](http://yeoman.io) generator for Animore.
 
 
 ## Getting Started
