@@ -32,13 +32,11 @@ module.exports = yeoman.generators.Base.extend({
       'default' : '',
       'validate': function(input) {
         var done = this.async();
-        setTimeout(function() {
-          if (input.length != 2 || !/^[a-z]{2}$/.test(input)) {
-            done("亲，必须输入花名的前两个字母哟，请重新输入~~~");
-            return;
-          }
-          done(true);
-        }, 100);
+        if (input.length != 2 || !/^[a-z]{2}$/.test(input)) {
+          done("亲，必须输入花名的前两个字母哟，请重新输入~~~");
+          return;
+        }
+        done(true);
       }
     }, {
       type    : 'input',
@@ -47,13 +45,11 @@ module.exports = yeoman.generators.Base.extend({
       'default' : '',
       'validate': function(input) {
         var done = this.async();
-        setTimeout(function() {
-          if (input.length != 2 || !/^[a-z]{2}$/.test(input)) {
-            done("亲，必须输入花名的前两个字母哟，请重新输入~~~");
-            return;
-          }
-          done(true);
-        }, 100);
+        if (input.length != 2 || !/^[a-z]{2}$/.test(input)) {
+          done("亲，必须输入花名的前两个字母哟，请重新输入~~~");
+          return;
+        }
+        done(true);
       }
     }, {
       type    : 'input',
@@ -62,37 +58,35 @@ module.exports = yeoman.generators.Base.extend({
       'default' : '',
       'validate': function(input) {
         var done = this.async();
-        setTimeout(function() {
-          if (!/^\d+$/.test(input.trim())) {
-            done("亲，必须是数字哟，请重新输入~~~");
-            return;
-          }
-          done(true);
-        }, 100);
+        if (!/^\d+$/.test(input.trim())) {
+          done("亲，必须是数字哟，请重新输入~~~");
+          return;
+        }
+        done(true);
       }
     }, {
       type: 'checkbox',
       name: 'features',
-      message: '支持那些浏览器?',
+      message: '支持哪些浏览器?',
       choices: [{
         name: 'IE9+',
-        value: 'includeLess',
+        value: 'ie9ok',
         checked: false
       },{
         name: 'IE9-',
-        value: 'includeLess',
+        value: 'ie9no',
         checked: false
       },{
         name: 'Firefox',
-        value: 'includeSass',
+        value: 'ffok',
         checked: true
       },{
         name: 'Chrome',
-        value: 'includeNo',
+        value: 'chromeok',
         checked: true
       },{
         name: 'Safari',
-        value: 'includeNo',
+        value: 'safariok',
         checked: true
       }]
     }, {
@@ -132,6 +126,7 @@ module.exports = yeoman.generators.Base.extend({
       this.designer = answers.designer.toLowerCase();
       this.developer = answers.developer.toLowerCase();
       this.order = answers.order;
+      this.features = answers.features;
 
       this.rootDir = this.designer + '-' + this.developer + '-' + this.order;
       this.id = 'animore-' + this.rootDir;
