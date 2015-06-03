@@ -144,17 +144,17 @@ module.exports = yeoman.generators.Base.extend({
 
       this.rootDir = this.developer + '-' + this.designer + '-' + this.order;
       this.id = 'animore-' + this.rootDir;
-      
+
       done();
     }.bind(this));
   },
 
   gruntfile: function () {
-    this.template('Gruntfile.js', this.rootDir + '/Gruntfile.js');
+    this.copy('Gruntfile.js', this.rootDir + '/Gruntfile.js');
   },
 
   packageJSON: function () {
-    render(this, '_package.json', this, this.rootDir + '/package.json')
+    render(this, 'package.json', this, this.rootDir + '/package.json')
   },
 
   git: function () {
