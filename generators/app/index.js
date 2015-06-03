@@ -96,7 +96,7 @@ module.exports = yeoman.generators.Base.extend({
     }, {
       type: 'list',
       name: 'features',
-      message: '想用哪个CSS解析器?',
+      message: '是否想用CSS解析器?',
       choices: [{
         name: 'Less',
         value: 'includeLess',
@@ -106,6 +106,32 @@ module.exports = yeoman.generators.Base.extend({
         value: 'includeNo',
         checked: false
       }]
+    }, {
+      type    : 'input',
+      name    : 'width',
+      message : '动效的宽度是多少(请输入数字)?',
+      'default' : '',
+      'validate': function(input) {
+        var done = this.async();
+        if (!/^\d+$/.test(input.trim())) {
+          done("亲，必须是数字哟，请重新输入~~~");
+          return;
+        }
+        done(true);
+      }
+    }, {
+      type    : 'input',
+      name    : 'height',
+      message : '动效的高度是多少(请输入数字)?',
+      'default' : '',
+      'validate': function(input) {
+        var done = this.async();
+        if (!/^\d+$/.test(input.trim())) {
+          done("亲，必须是数字哟，请重新输入~~~");
+          return;
+        }
+        done(true);
+      }
     }
 
     ];
@@ -126,6 +152,8 @@ module.exports = yeoman.generators.Base.extend({
       this.developerName = users.getUserName(this.developer);
       this.order = answers.order;
       this.browsers = answers.browsers;
+      this.width = answers.width;
+      this.height = answers.height;
 
       this.rootDir = this.developer + '-' + this.designer + '-' + this.order;
       this.id = 'animore-' + this.rootDir;
