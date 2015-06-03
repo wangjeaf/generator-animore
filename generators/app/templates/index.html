@@ -2,13 +2,20 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>ID</title>
+        <title><%= id %></title>
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
     <body>
 
+        <div class="animore-dev-container <%= id %>" 
+            data-designer="<%= designerName %>" 
+            data-developer="<%= developerName %>" 
+            data-browsers="<%= browsers %>">
+            在这里开发动效内容
+        </div>
+
         <!-- AUTO-GENERATE-BY-GENERATOR start -->
-        <h2>亲，自动刷新已开启，开始开发 ID 吧</h2>
+        <h2>亲，自动刷新已开启，开始开发 <%= id %> 吧</h2>
         <p>如果没有Chrome浏览器安装LiveReload自动刷新插件，请点击 <a href="https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei" target="_blank">这里</a> 进行安装，文档在 <a href="http://www.bluesdream.com/blog/grunt-plugin-livereload-wysiwyg-editor.html" target="_blank">这里</a> </p>
         <!-- AUTO-GENERATE-BY-GENERATOR end -->
 

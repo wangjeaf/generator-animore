@@ -4,6 +4,18 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var mkdirp = require('mkdirp');
 var yosay = require('yosay');
+var users = require('./users');
+
+function render(obj, file, data, target) {
+    var tmpl = obj.read(file);
+
+    var content = obj.engine(
+      tmpl,
+      data
+    );
+
+    obj.write(target, content);
+}
 
 module.exports = yeoman.generators.Base.extend({
   constructor: function () {
@@ -66,27 +78,27 @@ module.exports = yeoman.generators.Base.extend({
       }
     }, {
       type: 'checkbox',
-      name: 'features',
+      name: 'browsers',
       message: '支持哪些浏览器?',
       choices: [{
         name: 'IE9+',
-        value: 'ie9ok',
+        value: 'ie9+',
         checked: false
       },{
         name: 'IE9-',
-        value: 'ie9no',
+        value: 'ie9-',
         checked: false
       },{
         name: 'Firefox',
-        value: 'ffok',
+        value: 'Firefox',
         checked: true
       },{
         name: 'Chrome',
-        value: 'chromeok',
+        value: 'Chrome',
         checked: true
       },{
         name: 'Safari',
-        value: 'safariok',
+        value: 'Safari',
         checked: true
       }]
     }, {
@@ -124,12 +136,15 @@ module.exports = yeoman.generators.Base.extend({
       this.includeLess = hasFeature('includeLess');
 
       this.designer = answers.designer.toLowerCase();
+      this.designerName = users.getUserName(this.designer);
       this.developer = answers.developer.toLowerCase();
+      this.developerName = users.getUserName(this.developer);
       this.order = answers.order;
-      this.features = answers.features;
+      this.browsers = answers.browsers;
 
-      this.rootDir = this.designer + '-' + this.developer + '-' + this.order;
+      this.rootDir = this.developer + '-' + this.designer + '-' + this.order;
       this.id = 'animore-' + this.rootDir;
+      
       done();
     }.bind(this));
   },
@@ -139,11 +154,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   packageJSON: function () {
-    this.template('_package.json', this.rootDir + '/package.json');
-    // 替换ID
-    var content = this.read('_package.json');
-    content = content.replace(/ID/g, this.id);
-    this.write(this.rootDir + '/package.json', content);
+    render(this, '_package.json', this, this.rootDir + '/package.json')
   },
 
   git: function () {
@@ -180,10 +191,8 @@ module.exports = yeoman.generators.Base.extend({
 
   app: function () {
     this.directory(this.rootDir);
-    this.template('index.html', this.rootDir + '/index.html');
-    var content = this.read('index.html');
-    content = content.replace(/ID/g, this.id);
-    this.write(this.rootDir + '/index.html', content);
+
+    render(this, 'index.html', this, this.rootDir + '/index.html')
 
     mkdirp(this.rootDir + '/js');
     this.copy('main.js', this.rootDir + '/js/main.js');

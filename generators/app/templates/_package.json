@@ -1,7 +1,7 @@
 {
   "name": "ID",
-  "description": "动效库开发，编号ID",
-  "repository": "请记得修改这个repository到正确地址",
+  "description": "动效库开发，编号 <%= id %>",
+  "repository": "请记得修改这个repository到正确仓库地址",
   "version": "0.0.1",
   "devDependencies": {
     "grunt": "~0.4.2",
