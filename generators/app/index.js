@@ -71,6 +71,31 @@ module.exports = yeoman.generators.Base.extend({
         }, 100);
       }
     }, {
+      type: 'checkbox',
+      name: 'features',
+      message: '支持那些浏览器?',
+      choices: [{
+        name: 'IE9+',
+        value: 'includeLess',
+        checked: false
+      },{
+        name: 'IE9-',
+        value: 'includeLess',
+        checked: false
+      },{
+        name: 'Firefox',
+        value: 'includeSass',
+        checked: true
+      },{
+        name: 'Chrome',
+        value: 'includeNo',
+        checked: true
+      },{
+        name: 'Safari',
+        value: 'includeNo',
+        checked: true
+      }]
+    }, {
       type: 'list',
       name: 'features',
       message: '想用哪个CSS解析器?',
@@ -79,11 +104,7 @@ module.exports = yeoman.generators.Base.extend({
         value: 'includeLess',
         checked: true
       },{
-        name: 'Sass',
-        value: 'includeSass',
-        checked: false
-      },{
-        name: '啥也不用',
+        name: '不用LESS',
         value: 'includeNo',
         checked: false
       }]
