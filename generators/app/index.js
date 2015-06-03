@@ -20,14 +20,6 @@ function render(obj, file, data, target) {
 module.exports = yeoman.generators.Base.extend({
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
-
-    this.option('coffee', {
-      desc: 'Use CoffeeScript',
-      type: Boolean,
-      defaults: false
-    });
-
-    this.coffee = this.options.coffee;
   },
 
   askFor: function () {
@@ -36,7 +28,7 @@ module.exports = yeoman.generators.Base.extend({
 
     this.log(yosay('Welcome to join ' + chalk.red('Animore') + '! It is Amazing. Let\'s Go! :-)'));
 
-    // https://github.com/SBoudrias/Inquirer.js
+    // API请参考：https://github.com/SBoudrias/Inquirer.js
     var prompts = [{
       type    : 'input',
       name    : 'developer',
@@ -116,13 +108,6 @@ module.exports = yeoman.generators.Base.extend({
       }]
     }
 
-    // , {
-    //   type: 'confirm',
-    //   name: 'someOption',
-    //   message: 'Would you like to enable this option?',
-    //   'default': true
-    // }
-
     ];
 
     this.prompt(prompts, function (answers) {
@@ -159,23 +144,7 @@ module.exports = yeoman.generators.Base.extend({
 
   git: function () {
     this.template('gitignore', this.rootDir + '/.gitignore');
-    // this.copy('gitattributes', this.rootDir + '/.gitattributes');
   },
-
-  // bower: function () {
-  //   // var bower = {
-  //   //   name: this._.slugify(this.appname),
-  //   //   private: true,
-  //   //   dependencies: {}
-  //   // };
-
-  //   this.copy('bowerrc', this.rootDir + '/.bowerrc');
-  //   this.write('bower.json', JSON.stringify({
-  //     name: this.appname,
-  //     private: true,
-  //     dependencies: {}
-  //   }, null, 2));
-  // },
 
   jshint: function () {
     this.copy('jshintrc', this.rootDir + '/.jshintrc');
@@ -185,9 +154,6 @@ module.exports = yeoman.generators.Base.extend({
     this.copy('README.md', this.rootDir + '/README.md');
   },
 
-  // editorConfig: function () {
-    // this.copy('editorconfig', this.rootDir + '/.editorconfig');
-  // },
 
   app: function () {
     this.directory(this.rootDir);
@@ -215,10 +181,6 @@ module.exports = yeoman.generators.Base.extend({
 
     mkdirp(this.rootDir + '/doc');
 
-    // this.fs.copy(
-    //   this.templatePath('editorconfig'),
-    //   this.destinationPath(this.rootDir, 'editorconfig')
-    // );
   },
 
   install: function () {
@@ -226,6 +188,8 @@ module.exports = yeoman.generators.Base.extend({
       '恭喜！已成功创建动效 ' + chalk.green(this.rootDir) + '，接下来，请：\n\n' + 
       '1. 进入目录 ' + chalk.green(this.rootDir) + '\n' + 
       '2. 执行命令 ' + chalk.green('npm install') + ' (如果要sudo，请sudo)\n' + 
-      '3. 开始开发 ' + chalk.green('grunt dev') + '\n');
+      '3. 开始开发 ' + chalk.green('grunt dev') + '\n' + 
+      '4. 打包交付 ' + chalk.green('grunt build') + '，build目录下有惊喜~ \n'
+    );
   }
 });
