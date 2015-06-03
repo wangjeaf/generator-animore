@@ -1,5 +1,6 @@
 # generator-animore
 
+
 > [Yeoman](http://yeoman.io) generator for Animore.
 
 
