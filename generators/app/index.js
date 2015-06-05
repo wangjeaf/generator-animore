@@ -109,7 +109,7 @@ module.exports = yeoman.generators.Base.extend({
     }, {
       type    : 'input',
       name    : 'width',
-      message : '动效的宽度是多少(请输入数字)?',
+      message : '动效的宽度是多少(请输入数字,建议宽度是400)?',
       'default' : '',
       'validate': function(input) {
         var done = this.async();
@@ -122,7 +122,7 @@ module.exports = yeoman.generators.Base.extend({
     }, {
       type    : 'input',
       name    : 'height',
-      message : '动效的高度是多少(请输入数字)?',
+      message : '动效的高度是多少(请输入数字,建议高度是400)?',
       'default' : '',
       'validate': function(input) {
         var done = this.async();
