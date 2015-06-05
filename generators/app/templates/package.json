@@ -14,9 +14,6 @@
     "grunt-replace": "*",
     "grunt-zip": "*"
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  },
   "engines": {
     "node": ">=0.10.0"
   },
