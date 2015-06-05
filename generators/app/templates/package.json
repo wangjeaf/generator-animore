@@ -1,7 +1,9 @@
 {
-  "name": "ID",
-  "description": "动效库开发，编号 <%= id %>",
-  "repository": "请记得修改这个repository到正确仓库地址",
+  "name": "<%= id %>",
+  "description": "<%= order %>号动效开发，<%= designerName %>设计，<%= developerName %>开发",
+  "developer": "<%= developerName %>",
+  "designer": "<%= designerName %>",
+  "repository": "git@gitlab.alibaba-inc.com:animore/<%= id %>.git",
   "version": "0.0.1",
   "devDependencies": {
     "grunt": "~0.4.2",

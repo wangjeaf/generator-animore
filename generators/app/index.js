@@ -217,7 +217,8 @@ module.exports = yeoman.generators.Base.extend({
       '1. 进入目录 ' + chalk.green(this.rootDir) + '\n' + 
       '2. 执行命令 ' + chalk.green('npm install') + ' (如果要sudo，请sudo)\n' + 
       '3. 开始开发 ' + chalk.green('grunt dev') + '\n' + 
-      '4. 打包交付 ' + chalk.green('grunt build') + '，build目录下有惊喜~ \n'
+      '4. 放预览图 ' + chalk.green('请在imgs文件夹放入预览图preview.png，建议宽度220px') + '\n' +
+      '5. 打包交付 ' + chalk.green('grunt build') + '，build目录下有惊喜~ \n'
     );
   }
 });

@@ -1,1 +1,3 @@
-console.log('main inited');
+$(function () {
+	console.log('main inited');
+});

@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
     concat: {
       dist: {
         src: ["index.html"],
@@ -37,10 +38,11 @@ module.exports = function(grunt) {
       }
     },
     zip: {
-      'build/animore.zip': [
+      'build/<%= pkg.name %>.zip': [
         'index.html', 
         'css/main.css',
         'js/main.js',
+        'imgs/preview.png',
         'build/index.html'
       ]
     },
@@ -66,7 +68,7 @@ module.exports = function(grunt) {
       }
     },
   });
-
+  
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-replace');
@@ -75,6 +77,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('dev', ['connect', 'watch']);
-  grunt.registerTask('build', ['less', 'replace', 'zip']);
+
+  grunt.registerTask('testImg', ['检测预览图是否存在'], function() {
+    if(!grunt.file.exists('imgs/preview.png')) {
+      grunt.log.warn('预览图preview.png不存在~');
+      return false;
+    }
+  });
+
+  grunt.registerTask('build', ['testImg','less', 'replace', 'zip']);
   grunt.registerTask('default', ['build']);
 };
