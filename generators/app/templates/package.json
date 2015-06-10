@@ -1,10 +1,10 @@
 {
-  "name": "<%= id %>",
+  "name": "<%= rootDir %>",
   "version": "0.0.1",
-  "description": "第<%= order %>号动效，由<%= designerName %>设计，<%= developerName %>开发",
-  "developer": "<%= developerName %>",
-  "designer": "<%= designerName %>",
-  "repository": "git@gitlab.alibaba-inc.com:animore/<%= id %>.git",
+  "description": "动效<%= rootDir %>，由<%= designer %>设计，<%= developer %>开发",
+  "developer": "<%= developer %>",
+  "designer": "<%= designer %>",
+  "repository": "git@gitlab.alibaba-inc.com:mux-fe-team5/interesting-groups.git",
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-connect": "~0.6.0",

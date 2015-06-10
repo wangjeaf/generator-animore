@@ -4,7 +4,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var mkdirp = require('mkdirp');
 var yosay = require('yosay');
-var users = require('./users');
+// var users = require('./users');
 
 function render(obj, file, data, target) {
     var tmpl = obj.read(file);
@@ -32,12 +32,11 @@ module.exports = yeoman.generators.Base.extend({
     var prompts = [{
       type    : 'input',
       name    : 'developer',
-      message : '前端是谁?(请输入首字母，例如：思竹-->sz，麦梓-->mz)',
-      'default' : '',
+      message : '前端是谁?',
       'validate': function(input) {
         var done = this.async();
-        if (input.length != 2 || !/^[a-z]{2}$/.test(input)) {
-          done("亲，必须输入花名的前两个字母哟，请重新输入~~~");
+        if (input.length < 2 || input.length > 3 || input.match(/[^\u4e00-\u9fa5]/g)) {
+          done("亲，请输入正确的花名哟~~~");
           return;
         }
         done(true);
@@ -45,21 +44,19 @@ module.exports = yeoman.generators.Base.extend({
     }, {
       type    : 'input',
       name    : 'designer',
-      message : '设计是谁?(请输入首字母，例如：辉达-->hd，俄木-->em)',
-      'default' : '',
+      message : '设计是谁?',
       'validate': function(input) {
         var done = this.async();
-        if (input.length != 2 || !/^[a-z]{2}$/.test(input)) {
-          done("亲，必须输入花名的前两个字母哟，请重新输入~~~");
+        if (input.length < 2 || input.length > 3 || input.match(/[^\u4e00-\u9fa5]/g)) {
+          done("亲，请输入正确的花名哟~~~");
           return;
         }
         done(true);
       }
     }, {
       type    : 'input',
-      name    : 'order',
+      name    : 'id',
       message : '设计稿编号是多少(请输入数字)?',
-      'default' : '',
       'validate': function(input) {
         var done = this.async();
         if (!/^\d+$/.test(input.trim())) {
@@ -109,8 +106,8 @@ module.exports = yeoman.generators.Base.extend({
     }, {
       type    : 'input',
       name    : 'width',
-      message : '动效的宽度是多少(请输入数字,建议宽度是400)?',
-      'default' : '',
+      message : '动效的宽度是多少?(可在代码中修改)',
+      'default' : '400',
       'validate': function(input) {
         var done = this.async();
         if (!/^\d+$/.test(input.trim())) {
@@ -122,8 +119,8 @@ module.exports = yeoman.generators.Base.extend({
     }, {
       type    : 'input',
       name    : 'height',
-      message : '动效的高度是多少(请输入数字,建议高度是400)?',
-      'default' : '',
+      message : '动效的高度是多少?(可在代码中修改)',
+      'default' : '400',
       'validate': function(input) {
         var done = this.async();
         if (!/^\d+$/.test(input.trim())) {
@@ -143,20 +140,20 @@ module.exports = yeoman.generators.Base.extend({
         return features && features.indexOf(feat) !== -1;
       }
 
-      this.includeSass = hasFeature('includeSass');
+      // this.includeSass = hasFeature('includeSass');
       this.includeLess = hasFeature('includeLess');
 
-      this.designer = answers.designer.toLowerCase();
-      this.designerName = users.getUserName(this.designer);
-      this.developer = answers.developer.toLowerCase();
-      this.developerName = users.getUserName(this.developer);
-      this.order = answers.order;
+      this.designer = answers.designer;
+      //this.designerName = users.getUserName(this.designer);
+      this.developer = answers.developer;
+      //this.developerName = users.getUserName(this.developer);
+      this.id = answers.id;
       this.browsers = answers.browsers;
       this.width = answers.width;
       this.height = answers.height;
 
-      this.rootDir = this.developer + '-' + this.designer + '-' + this.order;
-      this.id = 'animore-' + this.rootDir;
+      // this.rootDir = this.developer + '-' + this.designer + '-' + this.id;
+      this.rootDir = 'animore-' + answers.id;
 
       done();
     }.bind(this));
@@ -195,14 +192,14 @@ module.exports = yeoman.generators.Base.extend({
     mkdirp(this.rootDir + '/css');
     this.template('main.css', this.rootDir + '/css/main.css');
 
-    if (this.includeSass) {
-      this.template('main.sass', this.rootDir + '/css/main.sass');
-    }
+    // if (this.includeSass) {
+    //   this.template('main.sass', this.rootDir + '/css/main.sass');
+    // }
     if (this.includeLess) {
       this.template('main.less', this.rootDir + '/css/main.less');
     }
 
-    mkdirp(this.rootDir + '/imgs');
+    //mkdirp(this.rootDir + '/imgs');
 
     mkdirp(this.rootDir + '/build');
     this.copy('index.html', this.rootDir + '/build/index.html');
@@ -217,8 +214,7 @@ module.exports = yeoman.generators.Base.extend({
       '1. 进入目录 ' + chalk.green(this.rootDir) + '\n' + 
       '2. 执行命令 ' + chalk.green('npm install') + ' (如果要sudo，请sudo)\n' + 
       '3. 开始开发 ' + chalk.green('grunt dev') + '\n' + 
-      '4. 放预览图 ' + chalk.green('请在imgs文件夹放入预览图preview.png，建议宽度220px') + '\n' +
-      '5. 打包交付 ' + chalk.green('grunt build') + '，build目录下有惊喜~ \n'
+      '4. 打包交付 ' + chalk.green('grunt build') + '，build目录下有惊喜~ \n'
     );
   }
 });
